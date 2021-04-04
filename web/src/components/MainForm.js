@@ -8,6 +8,7 @@ function MainForm() {
     const [selectedFile, setSelectedFile] = useState(null);
     const [isLoading, setIsLoading ] = useState(false);
     const [result, setResult] = useState(null);
+    const [error, setError] = useState(false);
     const [imageAdded, setImageAdded] = useState(false);
 
     const handlechange = (e) => {
@@ -18,6 +19,8 @@ function MainForm() {
 
 	
     const handleSubmission = () => {
+        setResult(null)
+        setError(false)
         if(!imageAdded) return
         setIsLoading(true)
         let image = new FormData()
@@ -43,7 +46,7 @@ function MainForm() {
 			.catch((error) => {
 				console.error('Error:', error);
                 setIsLoading(false)
-
+                setError(true)
 			});
 	};
     return (
@@ -69,6 +72,7 @@ function MainForm() {
                   </div>
                    </>
                   : <></>}
+                  {error ?  <div className={styles.errorCard}><p>Er ging iets fout!</p></div> : <p></p>}
                   {isLoading ?
                    <div className={styles.resultCard}>
                   <div className={styles.ldsring}><div></div><div></div><div></div><div></div></div>

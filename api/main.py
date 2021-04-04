@@ -8,6 +8,13 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from pymongo import MongoClient
 import datetime
+# from tester import predict
+
+
+from PIL import Image
+import numpy as np
+import os, cv2
+import tensorflow as tf
 
 app = FastAPI()
 # client = MongoClient(
@@ -45,7 +52,23 @@ async def create_upload_files(files: List[UploadFile] = File(...)):
             "status": "Uploaded"
         }
         # collection.insert_one(item)
-    return {"UploadedFileName": new_name + ".jpg", "age": item['age']}
+        print('saved')
+        filename = new_name + ".jpg"
+        filelocation = "./uploads/" + filename
+        os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices'
+        print('load model')
+        model = tf.keras.models.load_model("./")
+        print('read image')
+        test_pic = cv2.imread(filelocation)
+        print('resize')
+        test_pic = cv2.resize(test_pic,(128,128))
+        print('reshape')
+        test_pic = test_pic.reshape((1,128,128,3))
+        print('predict')
+        pred = model.predict(test_pic)
+        print('result')
+        age = pred.tolist()
+    return  {"UploadedFileName": filename, "age": round(age[0][0], 0)}
 
 
 # @app.get("/info/{id}")
