@@ -1,0 +1,16 @@
+header {
+  display: flex;
+  flex-direction: row;
+  background-color: #138d75;
+}
+
+.headerLogo {
+  background-color: #138d75;
+  padding: 1rem;
+  color: white;
+  display: flex;
+}
+
+.headerLogo img {
+  margin-right: 1rem;
+}
