@@ -1,22 +1,26 @@
+# Importeren van alle benodigde modules voor Tensorflow
 from typing import List
 import shutil
-from fastapi import FastAPI, File, UploadFile
-from fastapi.responses import HTMLResponse
-import uuid
-
-from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
 import numpy as np
 import os, cv2
 import tensorflow as tf
 
+# Importeren van alle benodigde modules voor de API (Application Programming Interface)
+from fastapi import FastAPI, File, UploadFile
+from fastapi.responses import HTMLResponse
+from fastapi.middleware.cors import CORSMiddleware
+import uuid
+
+# Het aanmaken van een api Instance.
 app = FastAPI()
 
 
+# Het instellen van een paar server opties, onderandere de toegestane IP 
+# adressen waar verzoeken van zullen worden geaccepeteerd.
 origins = [
     "http://localhost:8000",
     "http://localhost:3000",
-
 ]
 
 app.add_middleware(
