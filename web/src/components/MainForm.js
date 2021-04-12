@@ -1,3 +1,4 @@
+// Importeren van de styles en benodigde functies.
 import '../App.css'
 import { useState } from 'react';
 import styles from './MainForm.module.css';

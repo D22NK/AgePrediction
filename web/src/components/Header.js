@@ -1,3 +1,4 @@
+// Dit is de header boven aan de pagina. Dit gewoon een simpele html div in een header.
 import styles from './Header.module.css';
 import logo from '../favicon.png'
 function Header() {
