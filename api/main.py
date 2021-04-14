@@ -21,6 +21,10 @@ app = FastAPI()
 origins = [
     "http://localhost:8000",
     "http://localhost:3000",
+    "http://d22nk.nl",
+    "http://ai.d22nk.nl",
+    "https://d22nk.nl" ,
+    "https://ai.d22nk.nl" 
 ]
 
 app.add_middleware(

@@ -36,7 +36,7 @@ function MainForm() {
         console.log(selectedFile)
         // Het verzoek naar de api maken inclusief de afbeelding.
 		fetch(
-			'http://localhost:8000/upload/',
+			'https://ai.d22nk.nl/upload/',
 			{
 				method: 'POST',
                 headers: {
